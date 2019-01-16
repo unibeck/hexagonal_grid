@@ -157,7 +157,6 @@ class HexLayout {
   ///Use the following methods to get the respective hexagon size of a symmetric
   /// shape such as a circle or square, given the orientation.
   /// https://www.redblobgames.com/grids/hexagons/#size-and-spacing
-
   static Point getOrientPointySizeFromSymmetricalSize(double size) {
     return Point(sqrt(3.0) * size, 2 * size);
   }

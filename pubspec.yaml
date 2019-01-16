@@ -1,7 +1,7 @@
 name: hexagonal_grid
 description: A hexagonal grid library for Dart 2 that uses axial coordinates and contains algorithms
   to build hex layouts
-version: 1.0.0
+version: 1.0.3
 author: Jonathan Beckman <jonathantbeckman@gmail.com>
 homepage: https://gitlab.com/jbeckman/hexagonal_grid
 

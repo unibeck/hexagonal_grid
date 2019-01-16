@@ -6,8 +6,12 @@ import "dart:math";
 /// https://www.redblobgames.com/grids/hexagons/implementation.html
 class Hex {
   static List directions = [
-    Hex( 1, 0), Hex( 1,-1), Hex(0, -1),
-    Hex(-1, 0), Hex(-1, 1), Hex(0,  1)
+    Hex(1, 0),
+    Hex(1, -1),
+    Hex(0, -1),
+    Hex(-1, 0),
+    Hex(-1, 1),
+    Hex(0, 1)
   ];
 
   final int _q;
@@ -40,8 +44,7 @@ class Hex {
   Point cornerOffset(HexLayout layout, int corner) {
     Point size = layout.size;
     double angle = 2.0 * pi * (corner + layout.orientation.startAngle) / 6;
-    return Point(
-        layout.origin.x + size.x * cos(angle),
+    return Point(layout.origin.x + size.x * cos(angle),
         layout.origin.y + size.y * sin(angle));
   }
 
@@ -63,15 +66,13 @@ class Hex {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is Hex &&
-              runtimeType == other.runtimeType &&
-              _q == other._q &&
-              _r == other._r;
+      other is Hex &&
+          runtimeType == other.runtimeType &&
+          _q == other._q &&
+          _r == other._r;
 
   @override
-  int get hashCode =>
-      _q.hashCode ^
-      _r.hashCode;
+  int get hashCode => _q.hashCode ^ _r.hashCode;
 
   Hex operator +(Hex other) {
     return Hex(q + other.q, r + other.r);
@@ -94,8 +95,8 @@ class Hex {
     double xDiff, yDiff, zDiff;
 
     if (layout.flat) {
-      q = (p.x * 2/3 / size.x);
-      r = (-p.x / 3 + sqrt(3)/3 * p.y) / size.y;
+      q = (p.x * 2 / 3 / size.x);
+      r = (-p.x / 3 + sqrt(3) / 3 * p.y) / size.y;
     } else {
       q = (p.x * sqrt(3) / 3 - p.y / 3) / size.x;
       r = p.y * 2 / 3 / size.y;
@@ -130,8 +131,8 @@ class HexOrientation {
   final double f0, f1, f2, f3;
   final double b0, b1, b2, b3;
   final double startAngle;
-  HexOrientation(this.f0, this.f1, this.f2, this.f3,
-      this.b0, this.b1, this.b2, this.b3, this.startAngle);
+  HexOrientation(this.f0, this.f1, this.f2, this.f3, this.b0, this.b1, this.b2,
+      this.b3, this.startAngle);
 }
 
 class HexLayout {
@@ -143,18 +144,15 @@ class HexLayout {
   factory HexLayout(Point size, Point origin) =>
       new HexLayout.orientFlat(size, origin);
 
-  HexLayout.orientPointy(this.size, this.origin) :
-        flat = false,
-        orientation = new HexOrientation(
-            sqrt(3.0), sqrt(3.0) / 2.0, 0.0, 3.0 / 2.0,
-            sqrt(3.0) / 3.0, -1.0 / 3.0, 0.0, 2.0 / 3.0, 0.5);
+  HexLayout.orientPointy(this.size, this.origin)
+      : flat = false,
+        orientation = new HexOrientation(sqrt(3.0), sqrt(3.0) / 2.0, 0.0,
+            3.0 / 2.0, sqrt(3.0) / 3.0, -1.0 / 3.0, 0.0, 2.0 / 3.0, 0.5);
 
-  HexLayout.orientFlat(this.size, this.origin) :
-        flat = true,
-        orientation = new HexOrientation(
-            3.0 / 2.0, 0.0, sqrt(3.0) / 2.0, sqrt(3.0),
-            2.0 / 3.0, 0.0, -1.0 / 3.0, sqrt(3.0) / 3.0, 0.0);
-
+  HexLayout.orientFlat(this.size, this.origin)
+      : flat = true,
+        orientation = new HexOrientation(3.0 / 2.0, 0.0, sqrt(3.0) / 2.0,
+            sqrt(3.0), 2.0 / 3.0, 0.0, -1.0 / 3.0, sqrt(3.0) / 3.0, 0.0);
 
   ///Use the following methods to get the respective hexagon size of a symmetric
   /// shape such as a circle or square, given the orientation.
@@ -173,7 +171,6 @@ class HexLayout {
 /// metadata about a specific [Hex]. Currently only implements the orbital, but
 /// will likely contain other metadata for use by those frameworks in the future
 class UIHex {
-
   UIHex(this.hex, {this.orbital});
 
   final Hex hex;
@@ -205,8 +202,8 @@ class UIHex {
           }
 
           hexList.add(UIHex(neighborHex, orbital: orbital));
-          neighborHex = neighborHex
-              .neighbor((direction + 2) % Hex.directions.length);
+          neighborHex =
+              neighborHex.neighbor((direction + 2) % Hex.directions.length);
           i++;
         }
       }
@@ -216,5 +213,4 @@ class UIHex {
 
     return hexList;
   }
-
 }

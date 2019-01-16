@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:hex_grid/hex_grid.dart';
+import 'package:hexagonal_grid/hexagonal_grid.dart';
 
 void main() {
   test('Origin hex to pixel works', () {

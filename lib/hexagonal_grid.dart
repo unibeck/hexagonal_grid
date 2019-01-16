@@ -1,4 +1,4 @@
-library hex_grid;
+library hexagonal_grid;
 
 import "dart:math";
 

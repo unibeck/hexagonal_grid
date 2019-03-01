@@ -181,6 +181,10 @@ class UIHex {
   /// entry is the origin and last entry is the furthest hex from origin. Use
   /// with [HexLayout] to get a pixel representation
   static List<UIHex> toSpiralHexLayout(List list) {
+    if (list == null || list.isEmpty) {
+      return [];
+    }
+
     Hex originHex = Hex(0, 0);
 
     List<UIHex> hexList = [];
